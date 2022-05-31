@@ -65,4 +65,23 @@ public class EmpDaoImpl implements EmpDao {
         }
         return null;
     }
+
+    @Override
+    public boolean deleteEmp(Connection conn,String empNo) {
+        PreparedStatement psta = null;
+        try {
+            String sql = "delete from emp where emp_no=?";
+            psta = conn.prepareStatement(sql);
+            psta.setString(1, empNo);
+            int num = psta.executeUpdate();
+            if (num>0) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closePsta(psta);
+        }
+        return false;
+    }
 }

@@ -6,17 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="renderer" content="webkit">
 		<title></title>
-		<link rel="stylesheet" href="css/pintuer.css">
-		<link rel="stylesheet" href="css/admin.css">
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/amazeui.min.css">
-		<link rel="stylesheet" href="css/admin1.css">
-		<link rel="stylesheet" href="css/app.css">
-		<script src="js/jquery.js"></script>
-		<script src="js/pintuer.js"></script>
-		<script src="js/amazeui.min.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/plugs.js"></script>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/pintuer.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/amazeui.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin1.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css">
+		<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+		<script src="${pageContext.request.contextPath}/js/pintuer.js"></script>
+		<script src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/app.js"></script>
+		<script src="${pageContext.request.contextPath}/js/plugs.js"></script>
 	</head>
 	<body>
 		<form method="post" action="">
@@ -84,7 +84,7 @@
 				<td>${emp.deptNo}</td>
 				<td>
 					<a href="updateEmp.html" class="btn btn-info" target="right">修改</a>
-					<button class="btn btn-warning">删除</button>
+					<a href="${pageContext.request.contextPath}/emp.action?flag=delete?empNo=${emp.empNo}"><button class="btn btn-warning">删除</button></a>
 				</td>
 			</tr>
 			</c:forEach>

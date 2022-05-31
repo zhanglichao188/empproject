@@ -6,6 +6,7 @@ import com.bjpn.dao.impl.EmpDaoImpl;
 import com.bjpn.service.EmpService;
 import com.bjpn.util.DBUtil;
 
+import javax.xml.stream.events.Comment;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -28,7 +29,7 @@ public class EmpServiceImpl implements EmpService {
             }
         } catch (Exception e) {
             try {
-                conn.commit();
+                conn.rollback();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -52,5 +53,32 @@ public class EmpServiceImpl implements EmpService {
             DBUtil.closeConn(conn);
         }
         return null;
+    }
+
+    @Override
+    public boolean deleteEmp(String empNo) {
+        Connection conn = null;
+        try {
+            conn = DBUtil.getConn();
+            conn.setAutoCommit(false);
+            boolean b = empDao.deleteEmp(conn, empNo);
+            if (b) {
+                conn.commit();
+                return true;
+            } else {
+                conn.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeConn(conn);
+        }
+        return false;
     }
 }

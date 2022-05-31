@@ -26,6 +26,7 @@ public class EmpServlet extends HttpServlet {
             saveEmp(request, response);
         } else if ("findAllEmp".equals(flag)) {
             findAllEmp(request,response);
+        } else if ("delete".equals(flag)) {
         }
     }
 
