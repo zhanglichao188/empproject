@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,11 +23,13 @@ public class EmpServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String flag = request.getParameter("flag");
+        System.out.println(flag);
         if ("saveEmp".equals(flag)) {
             saveEmp(request, response);
         } else if ("findAllEmp".equals(flag)) {
             findAllEmp(request,response);
         } else if ("delete".equals(flag)) {
+            deleteEmp(request, response);
         }
     }
 
@@ -67,4 +70,19 @@ public class EmpServlet extends HttpServlet {
         request.setAttribute("listEmp", listEmp);
         request.getRequestDispatcher("page/emp/emp.jsp").forward(request, response);
     }
+
+    private void deleteEmp(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String empNo = request.getParameter("empNo");
+        System.out.println(empNo);
+        boolean b = empService.deleteEmp(empNo);
+        PrintWriter out = response.getWriter();
+        if (b) {
+            out.write("ok");
+            System.out.println("删除成功");
+        } else {
+            out.write("删除失败");
+            System.out.println("删除失败");
+        }
+    }
+
 }

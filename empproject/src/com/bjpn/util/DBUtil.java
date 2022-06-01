@@ -12,8 +12,8 @@ public class DBUtil {
     }
     public static Connection getConn(){
         try {
-            String url = "jdbc:mysql://localhost:3306/sh2203?serverTimezone=UTC";
-            Connection conn = DriverManager.getConnection(url,"root","root");
+            String url = "jdbc:mysql://101.35.52.122:3306/sh2203?serverTimezone=UTC";
+            Connection conn = DriverManager.getConnection(url,"root","199682");
             return conn;
         } catch (SQLException e) {
             e.printStackTrace();

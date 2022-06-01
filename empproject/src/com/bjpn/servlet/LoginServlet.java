@@ -26,7 +26,6 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         JSONObject json = new JSONObject();
         if (atm != null) {
-            System.out.println(flag);
             if (Boolean.parseBoolean(flag)) {
                 Cookie loginCode = new Cookie("loginCode", code);
                 loginCode.setMaxAge(60 * 60 * 24 * 10);
@@ -49,6 +48,5 @@ public class LoginServlet extends HttpServlet {
             json.put("message", false);
             out.write(json.toString());
         }
-        System.out.println(json);
     }
 }

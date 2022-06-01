@@ -17,6 +17,17 @@
 		<script src="${pageContext.request.contextPath}/js/amazeui.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/app.js"></script>
 		<script src="${pageContext.request.contextPath}/js/plugs.js"></script>
+		<script>
+			function deleteEmp(id) {
+				$.post("${pageContext.request.contextPath}/emp.action?flag=delete", {"empNo": id}, function (message) {
+					if (message == "ok") {
+						alert("成功");
+					} else {
+						alert(message);
+					}
+				}, "text");
+			}
+		</script>
 	</head>
 	<body>
 		<form method="post" action="">
@@ -83,8 +94,8 @@
 				<td><img src="${pageContext.request.contextPath}/fileupload/${emp.empPhoto}" height="100px" width="100px"></td>
 				<td>${emp.deptNo}</td>
 				<td>
-					<a href="updateEmp.html" class="btn btn-info" target="right">修改</a>
-					<a href="${pageContext.request.contextPath}/emp.action?flag=delete?empNo=${emp.empNo}"><button class="btn btn-warning">删除</button></a>
+					<a href="${pageContext.request.contextPath}/page/emp/updateEmp.html" class="btn btn-info" target="right">修改</a>
+					<button class="btn btn-warning" onclick="deleteEmp(${emp.empNo})">删除</button>
 				</td>
 			</tr>
 			</c:forEach>
